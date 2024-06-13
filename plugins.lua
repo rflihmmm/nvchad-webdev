@@ -4,6 +4,16 @@ local plugins = {
     opts = {
       ensure_installed = {
         "gopls",
+        "gofumpt",
+        "goimports",
+        "golines",
+        -- "emmet-ls",
+        "eslint-lsp",
+        "typescript-language-server",
+        "tailwindcss-language-server",
+        "lua-language-server",
+        "prettierd",
+        "pyright"
       },
     },
   },
@@ -31,7 +41,7 @@ local plugins = {
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
-    ft = "go",
+    event = "VeryLazy",
     opts = function()
       return require "custom.configs.null-ls"
     end,
@@ -46,6 +56,32 @@ local plugins = {
     build = function()
       vim.cmd [[silent! GoInstallDeps]]
     end,
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    ft = {
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+    },
+    config = function ()
+      require("nvim-ts-autotag").setup()
+    end
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function ()
+      opts = require("plugins.configs.treesitter")
+      opts.ensure_installed = {
+        "lua",
+        "javascript",
+        "typescript",
+        "tsx",
+        "go",
+        "python",
+      }
+    end
   },
 }
 return plugins
