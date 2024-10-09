@@ -22,7 +22,7 @@ lspconfig.gopls.setup {
   },
 }
 
-local servers = {"tsserver", "tailwindcss", "eslint", "html", "cssls", "jsonls"}
+local servers = {"ts_ls","pyright", "tailwindcss", "eslint", "html", "cssls", "jsonls"}
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup{
