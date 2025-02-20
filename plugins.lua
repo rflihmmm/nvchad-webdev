@@ -120,6 +120,9 @@ local plugins = {
         "tsx",
         "go",
         "python",
+        "css",
+        "html",
+        "svelte",
       }
     end
   },

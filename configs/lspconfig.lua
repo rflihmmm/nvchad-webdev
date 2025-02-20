@@ -6,7 +6,7 @@ local lspconfig = require("lspconfig")
 local util = require "lspconfig/util"
 
 lspconfig.gopls.setup {
-  on_attach = on_attach,  
+  on_attach = on_attach,
   capabilities = capabilities,
   cmd = {"gopls"},
   filetypes = { "go", "gomod", "gowork", "gotmpl" },
@@ -22,7 +22,22 @@ lspconfig.gopls.setup {
   },
 }
 
-local servers = {"ts_ls","pyright", "tailwindcss", "eslint", "html", "cssls", "jsonls"}
+lspconfig.ts_ls.setup{
+  init_options = {
+    plugins = {
+      {
+        name = "@vue/typescript-plugin",
+        location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
+        languages = {"javascript", "typescript", "vue"},
+      },
+    },
+  },
+  filetypes={
+    "javascript", "javascriptreact", "javascript.jsx","typescript", "typescriptreact", "vue"
+  }
+}
+
+local servers = {"pyright", "tailwindcss", "eslint", "html", "cssls", "jsonls"}
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup{
@@ -31,19 +46,6 @@ for _, lsp in ipairs(servers) do
   }
 end
 
--- lspconfig.emmet_ls.setup({
---   on_attach = on_attach,
---   capabilities = capabilities,
---   filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "svelte", "pug", "typescriptreact", "vue" },
---   init_options = {
---     html = {
---       options = {
---         -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
---         ["bem.enabled"] = true,
---       },
---     },
---   }
--- })
 
 lspconfig.lua_ls.setup {
   on_init = function(client)
