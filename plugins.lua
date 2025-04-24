@@ -11,6 +11,7 @@ local plugins = {
         "eslint-lsp",
         "typescript-language-server",
         "tailwindcss-language-server",
+        "svelte-language-server",
         "lua-language-server",
         "prettierd",
         "pyright",
@@ -104,6 +105,8 @@ local plugins = {
       "javascriptreact",
       "typescript",
       "typescriptreact",
+      "vue",
+      "svelte",
     },
     config = function ()
       require("nvim-ts-autotag").setup()
@@ -123,6 +126,8 @@ local plugins = {
         "css",
         "html",
         "svelte",
+        "vue",
+        "php"
       }
     end
   },
